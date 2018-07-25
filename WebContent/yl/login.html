@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ÑÔÂÛ&nbsp;-&nbsp;µÇÂ¼</title>
+    <link rel="stylesheet" type="text/css" href="/yl/yl/css/views.css">
+    <link href="/yl/yl/image/icon.png" rel="shortcut icon" />
+    <script src="/yl/yl/js/views.js" type="text/javascript"></script>
+    <script src="/yl/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+</head>
+<body class="bgcolor">
+<div class="logo"><a href="/yl/index.html"><img src="/yl/yl/image/logo.png"></a></div>
+<div class="usertip" style="clear: both; margin-top: 208px;" id="emailunused">ÓÊÏäÎ´×¢²á£¬Çë×¢²á£¡</div>
+<div class="frame">
+    <div style="padding-top: 55px;">
+        <div class="framlogreg log regorlog"><a href="./login.html">µÇÂ¼</a></div>
+        <div class="framlogreg dot"><span>¡¤</span></div>
+        <div class="framlogreg reg"><a href="register.html">×¢²á</a></div>
+    </div>
+    <div style="margin-top: 90px;">
+        <form id="loginForm" onsubmit="return checkUser()" action="http://localhost:8080/yl/login.action" method="post">
+            <div class="inputw">
+                <div>
+                    <input type="text" id="Email" name="email" onblur="checkEmail()" class="inputb user"
+                           placeholder="ÓÊÏä"/>
+                </div>
+                <div>
+                    <input type="password" id="PassWord" name="password"  class="inputb pwd"
+                           placeholder="ÃÜÂë"/>
+                </div>
+            </div>
+            <div class="remb"><input type="checkbox" checked>&nbsp;¼Ç×¡ÎÒ</div>
+            <div class="btndiv">
+                <button class="btn log" type="submit" id="logbtn">
+                    µÇÂ¼
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+function checkUser() {
+	¡¡¡¡var result = $.trim($("#Email").val());
+	¡¡¡¡var password = $.trim($("#PassWord").val());
+	¡¡¡¡if (result == "" || result == null) {
+	¡¡¡¡¡¡¡¡alert("ÓÊÏä²»ÄÜÎª¿Õ!");
+	¡¡¡¡¡¡¡¡return false;
+	¡¡¡¡}
+	¡¡¡¡if (password == "" || password == null) {
+	¡¡¡¡¡¡¡¡alert("ÇëÊäÈëÃÜÂë!");
+	¡¡¡¡¡¡¡¡return false;
+	¡¡¡¡}
+	¡¡¡¡$("#loginForm").submit();
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yl.dao.EssayMapper">
+	<select id="selectEssay" resultType="com.yl.pojo.Essay">
+		select * from essay 
+	</select>
+	
+	<select id="queryEssayByUserid" parameterType="Integer" resultType="com.yl.pojo.Essay">
+		select * from essay where userid = #{userid}
+	</select>
+	
+	<select id="queryEssayByEssayid" parameterType="Integer" resultType="com.yl.pojo.Essay">
+		select * from essay where essayid = #{essayid}
+	</select>
+	
+	<!-- 写文章 -->
+	<insert id="writeEssay" parameterType="com.yl.pojo.Essay">
+		insert into essay (userid, essayname, text, time)
+		values(#{userid}, #{essayname}, #{text}, #{time})
+	</insert>
+	<!-- 模糊查询文章 -->
+	<select id="queryEssayByString" parameterType="String" resultType="com.yl.pojo.Essay">
+		select * from essay where essayname like CONCAT('%',#{str},'%')or text like CONCAT('%',#{str},'%')
+	</select>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yl.dao.UserMapper">
+	<!-- 用户注册 -->
+	<insert id="registUser" parameterType="com.yl.pojo.User">
+		insert into user (username, password, 
+      	email, userphoto,registTime)
+    	values (#{username},
+    	#{password},
+    	#{email}, 
+      	#{userphoto}, #{registTime})
+	</insert>
+	
+	<!-- 用户登录 -->
+	<select id="loginUser" parameterType="String" resultType="com.yl.pojo.User">
+		select * from user where email=#{email} limit 1
+	</select>
+	
+	<!-- 修改信息 -->
+	<update id="updataUserById" parameterType="com.yl.pojo.User">
+		updata user set 
+		username = #{username},
+		password = #{password},
+		email = #{email},
+		userphoto = #{userphoto} where userId=#{userid}
+	</update>
+</mapper>

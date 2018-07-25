@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>个人主页</title>
+	<link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/yl.css">
+	<link rel="stylesheet" href="./css/user.css">
+	<link rel="stylesheet" href="../layui/css/layui.css" media="all">
+	<script src="../layui/layui.js"></script>
+	<script src="../js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<div id="head" class="form-horizontal">
+		<a href="./index.html">
+			<div id="logo">
+				<span id="title">言论</span><br>
+				&nbsp;<span style="color: #EF824E;">——言己之论 论他之言——</span>
+			</div>
+		</a>
+			<div id="search" class="form-group has-success has-feedback">
+					<div class="input-group">
+						<input type="text" placeholder="搜索" name="search" class="form-control" id="inputGroupSuccess2" 
+						aria-describedby="inputGroupSuccess2Status">
+						<span class="input-group-addon" style="border-color: #EF824E;background: #EF824E;"><a href="">
+							搜索
+						</a></span>
+					</div>
+				</div>
+				<div id="event">
+					<div id="login">
+						<a href="#"><button class="btn btn-default" style="border:none;margin-right: 30px; ">登录</button></a>
+						<a href="#"><button class="btn btn-info" style="-webkit-border-radius: 2em;moz-border-radius: 2em;border-radius: 2em;width: 100px;height: 45px;">注册</button></a>
+					</div>
+					
+					<div class="box" >
+						<div class="myicon" >
+							<a href="user.html"><img src="../imgs/user.jpg" alt="个人中心"></a>
+						</div>
+						<div id="write"><a href="./yl/write.html"><button class="btn btn-default">写文章</button></a></div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div id="user">
+					<div id="info">
+						<a href="./user.html" style="float: left;"><img src="../imgs/user.jpg" alt=""></a>
+						<br>
+						<div>
+							<h3 style="float: left;">用户名</h3>
+							<br>
+							<br>
+							<br>
+							<br>
+						</div>
+					</div>
+				</div>
+				<div id="nav">
+					<ul class="layui-nav">
+					  <li class="layui-nav-item">
+					    <a href="#" onclick="showsmyessay()">我的文章</a>
+					  </li>
+					  <li class="layui-nav-item" >
+					    <a href="#" onclick="showsmycomment()"">评论</a>
+					  </li>
+					  <li class="layui-nav-item">
+					  	<div class="dropdown">
+						  <span class="dropbtn">我</span>
+						  <div class="dropdown-content">
+						    <a href="#" onclick="showsmyinfo()">我的信息</a>
+						    <a href="#">退出</a>
+						  </div>
+						</div>
+					  </li>
+					</ul>
+				</div>
+				<div id="myessay">
+					<ul id="my_essay">
+						<li>
+							<p>您还没有写过文章</p>
+						</li>
+					</ul>
+				</div>
+				<div id="mycom">
+					<ul id="my_com">
+						<li>
+							<p>没有评论</p>
+						</li>
+					</ul>
+				</div>
+				<div id="myinfo">
+					<div id="binfo">
+						<div class="form-group">
+						    <label class="col-sm-2 control-label">用户名：</label>
+						    <div class="col-sm-10">
+						      <p class="form-control-static">username</p>
+						    </div>
+						    <label class="col-sm-2 control-label">邮  箱：</label>
+						    <div class="col-sm-10">
+						      <p class="form-control-static">2242546095@qq.com</p>
+						    </div>
+						    <label class="col-sm-2 control-label">头  像：</label>
+						    <div class="col-sm-10">
+						      <p class="form-control-static"><img src="../imgs/user.jpg" alt=""></p>
+						    </div>
+						</div>
+						<a href="#" onclick="showsupdata()"><button class="btn btn-info">修改信息</button></a>
+					</div>
+					<div id="updata" class="form-horizontal" style="display: none;">
+					<form action="left.html" method="post">
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">用户名：</label>
+						    <div class="col-sm-4">
+						      <input type="text" class="form-control" value="某某某" name="username">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">原密码：</label>
+						    <div class="col-sm-4">
+						      <input type="password" class="form-control" name="oldword">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">新密码：</label>
+						    <div class="col-sm-4">
+						      <input type="password" class="form-control" name="password">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">邮  箱：</label>
+						    <div class="col-sm-4">
+						      <input type="email" class="form-control" name="email" value="2242546095@qq.com">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">头  像：</label>
+						    <div class="col-sm-4">
+						    	<img src="../imgs/user.jpg" alt="">
+						        <input type="file" class="form-control" name="icon">
+						    </div>
+						  </div>
+						  <div class="form-group" style="margin-left: 100px;">
+						    <button class="btn btn-info" type="submit">提交</button>
+						  </div>
+						</form>
+						<a href="#" onclick="cancle()"><button class="btn btn-info" style="margin-left: 320px;margin-top:-70px;">取消</button></a>
+					</div>
+				</div>
+			</div>
+			<script>
+			function showsmyessay(){
+				document.getElementById("myessay").style.display = "block";
+				document.getElementById("mycom").style.display = "none";
+				document.getElementById("myinfo").style.display = "none";
+			}
+
+			function showsmyinfo(){
+				document.getElementById("myessay").style.display = "none";
+				document.getElementById("mycom").style.display = "none";
+				document.getElementById("myinfo").style.display = "block";
+			}
+
+			function showsmycomment(){
+				document.getElementById("myessay").style.display = "none";
+				document.getElementById("mycom").style.display = "block";
+				document.getElementById("myinfo").style.display = "none";
+			}
+			function showsupdata(){
+				document.getElementById("binfo").style.display = "none";
+				document.getElementById("updata").style.display = "block";
+			}
+			function cancle(){
+				document.getElementById("binfo").style.display = "block";
+				document.getElementById("updata").style.display = "none";
+				return false;
+			}
+			
+			$(document).ready(function() {
+				 $.ajax({
+				 url : "http://localhost:8080/yl/myEssay.action",//请求地址
+				 data:{"userid": 1},
+				 dataType : "json",//数据格式 
+				 type : "get",//请求方式
+				 success : function(data) {   //如何发送成功
+				 var html = "";
+				 for(var i=0;i<data.length;i++){    //遍历data数组
+				             var ls = data[i];
+				             html +="<li>";
+				 			 html +="<a href='./essay.html?essayid="+ls.essayid+"' target='_blank'>";
+				 			 html +="<h4><span>《</span>"+ls.essayname+"<span>》</span></h4></a>";
+				 			 html +="<a href='#'><button class='btn btn-default'>删除</button></a>";
+				 			 html +="</li>";
+				         	 $("#my_essay").html(html); //在html页面id=essay的标签里显示html内容
+				     }
+				 },
+				 });
+				 
+				 $.ajax({
+					 url : "http://localhost:8080/yl/queryByUserid.acion",//请求地址
+					 data:{"userid": 1},
+					 dataType : "json",//数据格式 
+					 type : "get",//请求方式
+					 success : function(data) {   //如何发送成功
+					 var html = "";
+					 for(var i=0;i<data.length;i++){    //遍历data数组
+					             var ls = data[i];
+					             html +="<li>";
+					             html +="<h5>"+ls.cdata+"评论了</h5>";
+					 			 html +="<a href='./essay.html?essayid="+ls.essayid+"' target='_blank'>";
+					 			 html +="<h4><span>《</span>"+ls.essayname+"<span>》</span></h4></a>";
+					 			 html +="<br>";
+					 			 html +="<p>"+ls.ccontent+"</p>";
+					 			 html +="<a href='#'><button class='btn btn-default'>删除</button></a>";
+					 			 html +="</li>";
+					         	 $("#my_com").html(html); //在html页面id=essay的标签里显示html内容
+					     }
+					 },
+				});
+			});
+		</script>
+</body>
+</html>

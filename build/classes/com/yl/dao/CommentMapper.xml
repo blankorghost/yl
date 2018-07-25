@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yl.dao.CommentMapper">
+	<!-- 写评论 -->
+	<insert id="writeComment" parameterType="com.yl.pojo.Comment">
+		insert into comment (cdata, ccontent, essayid, userid)
+		values(#{cdata}, #{ccontent}, #{essayid}, #{userid})
+	</insert>
+	
+	<!-- 通过userid查询评论 -->
+	<select id="queryByUserid" parameterType="Integer" resultType="com.yl.pojo.Comment">
+		select * from comment where userid = #{userid}
+	</select>
+	
+	<!-- 通过essayid查询评论 -->
+	<select id="queryByEssayid" parameterType="Integer" resultType="com.yl.pojo.Comment">
+		select * from comment where essayid = #{essayid}
+	</select>
+
+</mapper>

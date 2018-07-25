@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>搜索</title>
+	<link rel="stylesheet" href="/yl/bootstrap-3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/yl/yl/css/yl.css">
+	<link rel="stylesheet" href="/yl/yl/css/essay.css">
+	<link rel="stylesheet" href="/yl/layui/css/layui.css" media="all">
+	<script src="/yl/layui/layui.js"></script>
+	<script src="/yl/js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<div id="head" class="form-horizontal" style="margin-top:0">
+		<a href="/yl/index.html"><div id="logo">
+			<span id="title">言论</span><br>
+			&nbsp;<span style="color: #EF824E;">——言己之论 论他之言——</span>
+		</div></a>
+		<div id="search" class="form-group has-success has-feedback">
+			<div class="input-group">
+				<input type="text" placeholder="搜索" id="key" name="search" class="form-control" id="inputGroupSuccess2" 
+				aria-describedby="inputGroupSuccess2Status">
+				<span  class="input-group-addon" onclick="queryEssay()" style="border-color: #EF824E;background: #EF824E;">
+					<a href="#">搜索</a></span>
+			</div>
+		</div>
+		<div id="event">
+			<div id="login">
+				<a href="#"><button class="btn btn-default" style="border:none;margin-right: 30px; ">登录</button></a>
+				<a href="#"><button class="btn btn-info" style="-webkit-border-radius: 2em;moz-border-radius: 2em;border-radius: 2em;width: 100px;height: 45px;">注册</button></a>
+			</div>
+			
+			<div class="box" >
+				<div class="myicon" >
+					<a href="user.html"><img src="../imgs/user.jpg" alt="个人中心"></a>
+				</div>
+				<div id="write"><a href="./yl/write.html"><button class="btn btn-default">写文章</button></a></div>
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div class="container">
+		<div id="search-info">
+			<ul id="essaylike">
+				<li>
+					暂无文章
+				</li>
+			</ul>
+		</div>
+		<div id="bottom">
+			<span>关于言论</span>
+			<span>联系我们</span>
+		</div>
+	</div>
+	<script type="text/javascript">
+		
+		function queryEssay(){
+			var key = $.trim($("#key").val());
+			if(key == "" || key == null){
+				alert("不能为空！");
+				return false;
+			}else{
+			$.ajax({
+				 url : "http://localhost:8080/yl/essaylike.action",//请求地址
+				 data:{"key": key},
+				 dataType : "json",//数据格式 
+				 type : "post",//请求方式
+				 success : function(data) {   //如何发送成功
+				 var html = "";
+				 if(data.length == 0){
+					 html +="<li>没有“"+key+"”的信息</li>";
+		         	 $("#essaylike").html(html); 
+				 }
+				 for(var i=0;i<data.length;i++){    //遍历data数组
+				             var ls = data[i];
+				             var text = ls.text;
+				             if(text.length > 200){
+					 				text = text.substring(0,200)+"... ...";
+					 			 }
+				 			 html +="<div class='essay-all'>";
+				 			 html +="<a href='./essay.html?essayid="+ls.essayid+"' target='_blank'>";
+				 			 html +="<h4>"+ls.essayname+"</h4></a>";
+				 			 html +="&nbsp;&nbsp<p class='essay-part'>"+text+"</p></div>";
+				         	 $("#essaylike").html(html); //在html页面id=essay的标签里显示html内容
+				     }
+				 },
+				 });
+			}
+		}
+	</script>
+</body>
+</html>

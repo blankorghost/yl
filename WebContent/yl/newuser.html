@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>个人主页</title>
+	<link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/yl.css">
+	<link rel="stylesheet" href="./css/user.css">
+	<link rel="stylesheet" href="../layui/css/layui.css" media="all">
+	<script src="../layui/layui.js"></script>
+	<script src="../js/jquery-3.2.1.min.js"></script>
+	<script src="./js/user.js"></script>
+</head>
+<body>
+	<div id="head">
+		<a href="./index.html"><div id="logo">
+			<span id="title">言论</span><br>
+			&nbsp;<span style="color: #EF824E;">——言己之论 论他之言——</span>
+		</div></a>
+		<div id="search" class="form-group has-success has-feedback">
+			<div class="input-group">
+				<input type="text" placeholder="搜索" name="search" class="form-control" id="inputGroupSuccess2" 
+				aria-describedby="inputGroupSuccess2Status">
+				<span class="input-group-addon" style="border-color: #EF824E;background: #EF824E;"><a href="">
+					搜索
+				</a></span>
+			</div>
+		</div>
+		<div id="event">
+			<div class="box" style="margin-right: 45px;">
+				<form action="" method="post">
+					<button class="btn btn-default">登录</button>
+					<button class="btn btn-default">注册</button>
+				</form>
+			</div>
+			<a href="write.html" id="write"><span>写文章</span></a>
+		</div>
+	</div>
+	<hr>
+	<div class="container">
+		<div id="user">
+			<div id="info">
+				<a href="./user.html" style="float: left;"><img src="../imgs/user.jpg" alt=""></a>
+				<br>
+				<div>
+					<h3 style="float: left;">用户名</h3>
+					<br>
+					<br>
+					<br>
+					<span>文章</span><span>0</span>
+				</div>
+			</div>
+		</div>
+		<div id="nav">
+			<ul class="layui-nav">
+			  <li class="layui-nav-item">
+			    <a href="javascript:void(0);" onclick="myessayshow()">他的文章</a>
+			  </li>
+			</ul>
+		</div>
+		<div id="myessay">
+			<ul>
+				<li>
+					<a href="essay.html"><h3>文章名</h3></a>
+					<p class="essay-part">&nbsp;&nbsp;文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容
+					文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容</p>
+				</li>
+				<li>
+					<a href="essay.html"><h3>文章名</h3></a>
+					<p class="essay-part">&nbsp;&nbsp;文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容
+					文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容</p>
+				</li>
+				<li>
+					<a href="essay.html"><h3>文章名</h3></a>
+					<p class="essay-part">&nbsp;&nbsp;文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容
+					文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容</p>
+				</li>
+				<li>
+					<a href="essay.html"><h3>文章名</h3></a>
+					<p class="essay-part">&nbsp;&nbsp;文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容
+					文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容</p>
+				</li>
+			</ul>
+		</div>
+		<div id="bottom">
+			<span>关于言论</span>
+			<span>联系我们</span>
+		</div>
+	</div>
+</body>
+</html>

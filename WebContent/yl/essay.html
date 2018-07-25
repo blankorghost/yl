@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="/yl/bootstrap-3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/yl/yl/css/yl.css">
+	<link rel="stylesheet" href="/yl/yl/css/essay.css">
+	<link rel="stylesheet" href="/yl/layui/css/layui.css" media="all">
+	<script src="/yl/layui/layui.js"></script>
+	<script src="/yl/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		var thisURL = document.URL;  
+		var getval =thisURL.split('?')[1];  
+		var showval= getval.split("=")[1]; 
+		var essayid = showval;
+		 $.ajax({
+		 url : "http://localhost:8080/yl/essay.action",//请求地址
+		 data:{"essayid": essayid},
+		 dataType : "json",//数据格式 
+		 type : "get",//请求方式
+		 success : function(data) {   //如何发送成功
+		 var html = "";//遍历data
+		 var html1 = "";
+		 html +="<h1 style='text-align: center;'>"+data.essayname+"</h1>";
+		 html +="<h4 style='text-align: right;'><a href='user.html'><span id='username'>作者</span>"
+		 +"</a>&nbsp;字数<span id='wCount'></span>&nbsp;评论<span id='count'></span>"
+		 +"<span id='day'>"+data.time+"</span></h4>";
+		 html1 +="<input type='text' id='essayId' style='display:none' name='essayid' value='"+data.essayid+"' />"
+		 html +="<p id='essayall'>&nbsp;&nbsp;"+data.text+"</p>";
+		 $("#allId").html(html1);
+		 $("#essay-toall").html(html); //在html页面id=essay的标签里显示html内容
+		 },
+		 });
+		 
+		 /* 显示评论 */
+		 $.ajax({
+			 url : "http://localhost:8080/yl/queryCommentByEssayid.action",//请求地址
+			 data:{"essayid": essayid},
+			 dataType : "json",//数据格式 
+			 type : "get",//请求方式
+			 success : function(data) {   //如何发送成功
+				 var html = "";
+			 	 if(data.length==0){
+			 		 html +="<h3>暂无评论</h3>";
+			 		$("#comment_list").html(html);
+			 	 }
+				 for(var i=0;i<data.length;i++){    //遍历data数组
+				             var ls = data[i];
+				 			 html +="<li>";
+				 			 html +="<a href='./user.html' style='float: left;'><img src='../imgs/user.jpg' alt=''></a>";
+				 			 html +="<h4>评论人</h4>";
+				 			 html +="<h5>"+ls.cdata+"</h5>";
+				 			 html +="<p>"+ls.ccontent+"</p>";
+				 			 html +="</li>";
+				         	 $("#comment_list").html(html); //在html页面id=essay的标签里显示html内容
+				     }
+			 },
+			 });
+	});
+	</script>
+</head>
+<body>
+	<div id="head" class="form-horizontal">
+		<a href="/yl/index.html"><div id="logo">
+			<span id="title">言论</span><br>
+			&nbsp;<span style="color: #EF824E;">——言己之论 论他之言——</span>
+		</div></a>
+		<div id="search" class="form-group has-success has-feedback">
+			<div class="input-group">
+				<input type="text" placeholder="搜索" name="search" class="form-control" id="inputGroupSuccess2" 
+				aria-describedby="inputGroupSuccess2Status">
+				<span class="input-group-addon" style="border-color: #EF824E;background: #EF824E;"><a href="">
+					搜索
+				</a></span>
+			</div>
+		</div>
+		<div id="event">
+			<div id="login">
+				<a href="#"><button class="btn btn-default" style="border:none;margin-right: 30px; ">登录</button></a>
+				<a href="#"><button class="btn btn-info" style="-webkit-border-radius: 2em;moz-border-radius: 2em;border-radius: 2em;width: 100px;height: 45px;">注册</button></a>
+			</div>
+			
+			<div class="box" >
+				<div class="myicon" >
+					<a href="user.html"><img src="../imgs/user.jpg" alt="个人中心"></a>
+				</div>
+				<div id="write"><a href="./yl/write.html"><button class="btn btn-default">写文章</button></a></div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div id="essay-toall">
+			
+		</div>
+		<div id="wcomment">
+			<!-- <form action="http://localhost:8080/yl/writeComment.action" method="post"> -->
+				<div class="layui-form-item layui-form-text">
+					<label class="layui-form-label">
+					<a href="./user.html" style="float: left;"><img src="../imgs/user.jpg" alt=""></a>
+					</label>
+   					 <div class="layui-input-block">
+      					<textarea id="w_comment" name="ccontent" placeholder="写下您的评论" class="layui-textarea"></textarea>
+    				</div>
+    				<div id="allId">
+    					<input type="text" id = "userId" name="userid" value="1" style="display:none" />
+    				</div>
+    				<div class="layui-form-item">
+				    	<div class="layui-input-block">
+				     	 <button class="layui-btn" lay-submit lay-filter="formDemo" onclick="writeComment();">发表</button>
+				     	 <!-- <button onclick="testButton()">发表</button> -->
+				     	 <button type="reset" class="layui-btn layui-btn-primary">取消</button>
+				   		</div>
+				  	</div>
+				</div>
+			<!-- </form> -->
+		</div>
+		<div id="comment">
+			<h2 id="cCount">评论</h2>
+			<div id="comments">
+				<ul id="comment_list">
+					
+				</ul>
+			</div>
+		</div>
+		<div id="bottom">
+			<span>关于言论</span>
+			<span>联系我们</span>
+		</div>
+	</div>
+	<!-- 写评论 -->
+	<script type="text/javascript">
+		function writeComment(){
+			var ccontent = $.trim($("#w_comment").val());
+			var essayid = $.trim($("#essayId").val());
+			var userid = $.trim($("#userId").val());
+			if (ccontent == "" || ccontent == null) {
+			　　　　alert("评论不能为空!");
+			　　　　return false;
+			　　}
+			$.ajax({
+				 url : "http://localhost:8080/yl/writeComment.action",//请求地址
+				 data:{"essayid": essayid,
+					 	"userid": userid,
+					 	"ccontent": ccontent},
+				 dataType : "json",//数据格式 
+				 type : "post",//请求方式
+				 success : function(data) {   //如何发送成功
+					 getComment();
+				 	},
+				 });
+		}
+		
+		function getComment(){
+			var essayid = $.trim($("#essayId").val());
+			$.ajax({
+				 url : "http://localhost:8080/yl/queryCommentByEssayid.action",//请求地址
+				 data:{"essayid": essayid},
+				 dataType : "json",//数据格式 
+				 type : "get",//请求方式
+				 success : function(data) {   //如何发送成功
+					 var html = "";
+				 	 if(data.length==0){
+				 		 html +="<h3>暂无评论</h3>";
+				 		$("#comment_list").html(html);
+				 	 }
+					 for(var i=0;i<data.length;i++){    //遍历data数组
+					    var ls = data[i];
+					 	html +="<li>";
+					 	html +="<a href='./user.html' style='float: left;'><img src='../imgs/user.jpg' alt=''></a>";
+					 	html +="<h4>评论人</h4>";
+					 	html +="<h5>"+ls.cdata+"</h5>";
+					 	html +="<p>"+ls.ccontent+"</p>";
+					 	html +="</li>";
+					    $("#comment_list").html(html); //在html页面id=essay的标签里显示html内容
+					 }
+				 },
+				 });
+		}
+		function testButton(){
+			alert("sssss");
+		}
+	</script>
+</body>
+</html>
